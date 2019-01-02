@@ -3,7 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 // tslint:disable-next-line:only-arrow-functions
-async function bootstrap(): void {
+async function bootstrap(): Promise<any> {
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
