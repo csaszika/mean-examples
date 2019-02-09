@@ -1,11 +1,12 @@
 import {NgModule} from '@angular/core';
-import {MainNavComponent} from "./main-nav/main-nav.component";
-import {HomeComponent} from "./home/home.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {MainNavComponent} from "./components/main-nav/main-nav.component";
+import {HomeComponent} from "./components/home/home.component";
+import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {ShellComponent} from "./shell/shell.component";
 import {CommonModule} from "@angular/common";
 import {MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule} from '@angular/material';
 import {RouterModule} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {RouterModule} from "@angular/router";
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   declarations: [
     MainNavComponent,

@@ -1,15 +1,15 @@
 import {animate, animateChild, group, query, style, transition, trigger} from '@angular/animations';
 
-export const routerTransition = trigger('routerTransition', [
+export const routeAnimations = trigger('routeAnimations', [
   transition('* <=> *', [
 
     query(':enter, :leave',
-      style({ position: 'fixed', width: '90%' })
+      style({ position: 'fixed', width: '100%' })
       , { optional: true }),
 
     group([
       query(':enter', [
-        style({ transform: 'translateX(90%)' }),
+        style({ transform: 'translateX(100%)' }),
         animate('0.4s ease-in-out',
           style({ transform: 'translateX(0%)' })),
 

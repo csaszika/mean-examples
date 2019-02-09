@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {MenuItem} from "../types/menu-item.interface";
 
 @Component({
   selector: 'app-shell',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShellComponent implements OnInit {
 
-  constructor() { }
+  menuItems: MenuItem[];
+
+  constructor(private readonly route: ActivatedRoute) {
+    this.menuItems = route.snapshot.data['menuItems'];
+  }
 
   ngOnInit() {
   }
