@@ -1,14 +1,14 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { SharedModule } from './shared/shared.module';
-import { ConfigurationService } from './shared/configuration/configuration/configuration.service';
-import { Configuration } from './shared/configuration/configuration/configuration.enum';
-import { MenuItemsController } from './controllers/menu-items/menu-items.controller';
+import {Module} from '@nestjs/common';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
+import {SharedModule} from './shared/shared.module';
+import {ConfigurationService} from './shared/configuration/configuration/configuration.service';
+import {Configuration} from './shared/configuration/configuration/configuration.enum';
+import {MenuItemsModule} from './menu-items/menu-items.module';
 
 @Module({
-  imports: [SharedModule],
-  controllers: [AppController, MenuItemsController],
+  imports: [SharedModule, MenuItemsModule],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
