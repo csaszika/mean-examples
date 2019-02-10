@@ -8,10 +8,10 @@ async function bootstrap(): Promise<any> {
 
   if (AppModule.isDev) {
     const options = new DocumentBuilder()
-        .setTitle('Dogs example')
-        .setDescription('The dogs API description')
+        .setTitle('Swagger docs')
+        .setDescription('APIs descriptions')
         .setVersion('1.0')
-        .addTag('dogs')
+        .addTag('apis')
         .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
