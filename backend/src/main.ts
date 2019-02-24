@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as fs from 'fs';
 
 // tslint:disable-next-line:only-arrow-functions
 async function bootstrap(): Promise<any> {
@@ -16,6 +17,8 @@ async function bootstrap(): Promise<any> {
           .build();
 
       const document = SwaggerModule.createDocument(app, options);
+
+      fs.writeFileSync('./swagger-spec.json', JSON.stringify(document));
 
       SwaggerModule.setup('api', app, document, {
           swaggerUrl: `${hostDomain}/api/docs-json`,

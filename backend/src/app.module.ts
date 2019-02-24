@@ -1,13 +1,16 @@
-import {Module} from '@nestjs/common';
-import {AppController} from './app.controller';
-import {AppService} from './app.service';
-import {SharedModule} from './shared/shared.module';
-import {ConfigurationService} from './shared/configuration/configuration/configuration.service';
-import {Configuration} from './shared/configuration/configuration/configuration.enum';
-import {MenuItemsModule} from './menu-items/menu-items.module';
+import { Module } from '@nestjs/common';
+import { TypegooseModule } from 'nestjs-typegoose';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { SharedModule } from './shared/shared.module';
+import { ConfigurationService } from './shared/configuration/configuration/configuration.service';
+import { Configuration } from './shared/configuration/configuration/configuration.enum';
+import { MenuItemsModule } from './menu-items/menu-items.module';
+import { DogsModule } from './dogs/dogs.module';
 
 @Module({
-  imports: [SharedModule, MenuItemsModule],
+  imports: [SharedModule, TypegooseModule.forRoot(ConfigurationService.connectionString, { useNewUrlParser: true }), MenuItemsModule, DogsModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -1,6 +1,6 @@
-import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common';
-import {MenuItemsController} from "./controllers/menu-items/menu-items.controller";
-import {CorsMiddleware} from "../core/middlewares/cors.middleware";
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { MenuItemsController } from './controllers/menu-items/menu-items.controller';
+import { CorsMiddleware } from '../core/middlewares/cors.middleware';
 
 @Module({
     controllers: [MenuItemsController],
