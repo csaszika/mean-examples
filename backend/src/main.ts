@@ -3,6 +3,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as fs from 'fs';
 
+declare const module: any;
+
 // tslint:disable-next-line:only-arrow-functions
 async function bootstrap(): Promise<any> {
   const app = await NestFactory.create(AppModule);
@@ -30,6 +32,17 @@ async function bootstrap(): Promise<any> {
           },
       });
   }
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
+
+  app.enableCors({
+    origin: [
+      'http://localhost:4200', // angular
+    ],
+  });
 
   await app.listen(AppModule.port);
 }
