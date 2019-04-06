@@ -92,6 +92,14 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
+            ],
+            "codeCoverageExclude": [
+              "**/*.stub.ts",
+              "**/*.spec.ts",
+              "**/*.testdata.ts",
+              "**/*.mock.ts",
+              "src/environments/*",
+              "**/dist/**/*.*"
             ]
           }
         },
