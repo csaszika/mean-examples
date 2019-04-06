@@ -1,25 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { PageNotFoundComponentDriver } from './page-not-found.component.driver';
 import { PageNotFoundComponent } from './page-not-found.component';
 
+const componentSetup = (): PageNotFoundComponentDriver => {
+  return componentTestingSetup({
+    componentClass: PageNotFoundComponent,
+    driver: PageNotFoundComponentDriver,
+  });
+};
+
 describe('PageNotFoundComponent', () => {
-  let component: PageNotFoundComponent;
-  let fixture: ComponentFixture<PageNotFoundComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PageNotFoundComponent ]
-    })
-    .compileComponents();
-  }));
+  let driver: PageNotFoundComponentDriver;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PageNotFoundComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then(() => {
+      expect(driver.componentInstance).toBeTruthy();
+      expect(driver.pageNotFoundElement.textContent).toEqual('Page Not Found 404');
+    });
   });
 });

@@ -10,10 +10,10 @@ export class MenuItemsController {
         return [
             {
                 url: '/home',
-                name: 'Home'
-            },{
+                name: 'Home',
+            }, {
                 url: '/dogs',
-                name: 'Dogs'
+                name: 'Dogs',
             },
         ];
     }

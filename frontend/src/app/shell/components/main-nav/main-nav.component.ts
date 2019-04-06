@@ -17,7 +17,7 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  detectRoutingState(outlet) {
+  detectRoutingState(outlet): string {
     return outlet.activatedRouteData.animation;
   }
 }

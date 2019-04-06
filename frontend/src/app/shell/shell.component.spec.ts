@@ -1,27 +1,39 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ShellComponent } from './shell.component';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { ShellComponentDriver } from './shell.component.driver';
+import { ActivatedRoute } from '@angular/router';
+import { mockActivatedRouteWithMenuItems } from './test/activated-route.mock';
+import { MockComponent } from 'ng-mocks';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+
+const componentSetup = (): ShellComponentDriver => {
+  return componentTestingSetup({
+    componentClass: ShellComponent,
+    driver: ShellComponentDriver,
+    providers: [{
+      provide: ActivatedRoute,
+      useValue: mockActivatedRouteWithMenuItems()
+    }],
+    declarations: [MockComponent(MainNavComponent)]
+  });
+};
 
 describe('ShellComponent', () => {
-  let component: ShellComponent;
-  let fixture: ComponentFixture<ShellComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ShellComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
-  }));
+  let driver: ShellComponentDriver;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ShellComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then(() => {
+      expect(driver.componentInstance.menuItems).toEqual(mockActivatedRouteWithMenuItems().snapshot.data.menuItems);
+      expect(driver.mainNav.menuItems).toEqual(mockActivatedRouteWithMenuItems().snapshot.data.menuItems);
+    });
   });
 });

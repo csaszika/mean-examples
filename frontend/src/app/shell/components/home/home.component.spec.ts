@@ -1,25 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { HomeComponentDriver } from './home.component.driver';
 import { HomeComponent } from './home.component';
 
+const componentSetup = (): HomeComponentDriver => {
+  return componentTestingSetup({
+    componentClass: HomeComponent,
+    driver: HomeComponentDriver,
+  });
+};
+
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
-    })
-    .compileComponents();
-  }));
+  let driver: HomeComponentDriver;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then(() => {
+      expect(driver.componentInstance).toBeTruthy();
+      expect(driver.homeDiv.textContent).toEqual('Mean Home');
+    });
   });
 });
