@@ -1,11 +1,11 @@
 import {Component, Input} from '@angular/core';
 import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
-import {routeAnimations} from "../../../shared/animations/routing.animations";
-import {MenuItem} from "../../types/menu-item.interface";
+import {routeAnimations} from '../../../shared/animations/routing.animations';
+import {MenuItem} from '../../types/menu-item.interface';
 
 @Component({
-  selector: 'main-nav',
+  selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss'],
   animations: [routeAnimations]

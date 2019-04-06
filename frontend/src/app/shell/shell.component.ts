@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {MenuItem} from "../types/menu-item.interface";
+import {ActivatedRoute} from '@angular/router';
+import {MenuItem} from './types/menu-item.interface';
 
 @Component({
   selector: 'app-shell',
