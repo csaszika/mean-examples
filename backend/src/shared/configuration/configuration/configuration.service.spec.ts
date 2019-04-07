@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigurationService } from './configuration.service';
+import { Configuration } from './configuration.enum';
 
 describe('ConfigurationService', () => {
   let service: ConfigurationService;
@@ -12,5 +13,13 @@ describe('ConfigurationService', () => {
   });
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  it('should not be development mode, it is test', () => {
+    expect(service.isDevelopment).toEqual(false);
+  });
+
+  it('should return', () => {
+    expect(service.get(Configuration.MONGO_URI)).toEqual('mongodb://localhost:27017/my-mongo-db');
   });
 });
