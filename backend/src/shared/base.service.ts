@@ -5,31 +5,31 @@ import { from, Observable } from 'rxjs';
 export abstract class BaseService<T extends Typegoose> {
   protected _model: ModelType<T>;
 
-  findAll(filter = {}): Observable<Array<InstanceType<T>>> {
+  findAll(filter = {}): Observable<T[]> {
     return from(this._model.find(filter).exec());
   }
 
-  async findOne(filter = {}): Promise<InstanceType<T>> {
+  async findOne(filter = {}): Promise<T> {
     return this._model.findOne(filter).exec();
   }
 
-  async findById(id: string): Promise<InstanceType<T>> {
+  async findById(id: string): Promise<T> {
     return this._model.findById(Types.ObjectId(id)).exec();
   }
 
-  async create(item: T): Promise<InstanceType<T>> {
+  async create(item: T): Promise<T> {
     return this._model.create(item);
   }
 
-  async delete(id: string): Promise<InstanceType<T>> {
+  async delete(id: string): Promise<T> {
     return this._model.findByIdAndRemove(Types.ObjectId(id)).exec();
   }
 
-  async update(id: string, item: T): Promise<InstanceType<T>> {
+  async update(id: string, item: T): Promise<T> {
     return this._model.findByIdAndUpdate(Types.ObjectId(id), item, { new: true }).exec();
   }
 
-  async clearCollection(filter = {}): Promise<void> {
+  async clearCollection(filter = {}): Promise<{}> {
     return this._model.deleteMany(filter).exec();
   }
 }

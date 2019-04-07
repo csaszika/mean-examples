@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, UnauthorizedException } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiNotFoundResponse, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { DogsService } from '../services/dogs.service';
 import { Dog } from '../models/dog.model';
 import { Observable } from 'rxjs';
@@ -27,6 +27,7 @@ export class DogsController {
 
     @Get(':id')
     @ApiOkResponse({ type: Dog, isArray: false })
+    @ApiNotFoundResponse({ description: 'The dog does not exist'})
     async getDog(@Param('id') id: string): Promise<Dog | null> {
         return this.dogService.findOne(id);
     }

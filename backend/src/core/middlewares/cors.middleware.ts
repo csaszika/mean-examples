@@ -1,9 +1,9 @@
-import { Injectable, MiddlewareFunction, NestMiddleware } from '@nestjs/common';
+import { NestMiddleware } from '@nestjs/common';
 import * as cors from 'cors';
 
-@Injectable()
 export class CorsMiddleware implements NestMiddleware {
-  resolve(...args: any[]): MiddlewareFunction {
-    return cors();
+  /* istanbul ignore next */
+  use(req: Request, res: Response, next: () => void): any {
+    return cors()(req, res, next);
   }
 }
